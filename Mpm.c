@@ -8,6 +8,9 @@ typedef struct {
 } Bibliotecas;
 
 int main() {
+    system("clear");
+
+    printf(" \n \t  MPM1 \n  ");
     Bibliotecas libs = {
         .nomes = {
             "GLib",
@@ -26,12 +29,26 @@ int main() {
     };
 
     char input[50];
-    printf("Digite o nome da biblioteca para baixar: ");
+    printf("\nDigite o nome da biblioteca para baixar  : \n  ");
     fgets(input, sizeof(input), stdin);
     input[strcspn(input, "\n")] = 0;
 
+    if (strcmp(input, "/list") == 0) {
+        printf("\nLista das bibliotecas disponíveis:\n");
+        for (int i = 0; i < 5; i++) {
+            printf(" - %s\n", libs.nomes[i]);
+        }
+        return 0;
+    }
+  if(strcmp(input,"/help") ==0){
+        printf(" \n mpm 2025 \n vertion: 1.1.2 \n by void \n github:https://github.com/voidh7/Mpm \n ");
+
+        printf(" \n \t CMDS \n /list \n ");
+        return 0;
+        }
+
     int encontrado = 0;
-    for(int i = 0; i < 5; i++) {
+    for (int i = 0; i < 5; i++) {
         if (strcmp(input, libs.nomes[i]) == 0) {
             encontrado = 1;
             char cmd[200];
@@ -49,7 +66,7 @@ int main() {
     }
 
     if (!encontrado) {
-        printf("Biblioteca não encontrada.\n");
+        printf("\nBiblioteca não encontrada.\n");
     }
 
     return 0;
